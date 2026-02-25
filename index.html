@@ -7,95 +7,249 @@
 
 <style>
 :root{
-  --primary:#7c3aed;
-  --secondary:#06b6d4;
-  --text:#ffffff;
+  --primary:#6366f1;
+  --bg1:#0f172a;
+  --bg2:#1e293b;
+  --card:rgba(30,41,59,.85);
+  --text:#f1f5f9;
+  --soft:#94a3b8;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
   color:var(--text);
   min-height:100vh;
   display:flex;
   justify-content:center;
-  align-items:center;
-  overflow-x:hidden;
-  background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#111827);
-  background-size:400% 400%;
-  animation:gradientMove 12s ease infinite;
-}
-
-/* Background animation */
-@keyframes gradientMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-/* Floating glow circles */
-body::before,
-body::after{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:.5;
-  animation:float 8s ease-in-out infinite alternate;
-}
-
-body::before{
-  background:#7c3aed;
-  top:10%;
-  left:10%;
-}
-
-body::after{
-  background:#06b6d4;
-  bottom:10%;
-  right:10%;
-}
-
-@keyframes float{
-  from{transform:translateY(0)}
-  to{transform:translateY(-40px)}
 }
 
 .wrap{
   width:100%;
   max-width:1000px;
-  padding:30px;
-  position:relative;
-  z-index:2;
+  padding:40px 20px;
 }
 
 .card{
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(20px);
-  border-radius:25px;
-  padding:35px;
-  box-shadow:0 30px 80px rgba(0,0,0,.6);
-  animation:fadeUp .8s ease;
-}
-
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(30px)}
-  to{opacity:1; transform:translateY(0)}
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  border-radius:22px;
+  padding:30px;
+  box-shadow:0 25px 60px rgba(0,0,0,.5);
+  animation:fadeIn .6s ease;
 }
 
 h1{
-  font-size:28px;
-  margin-bottom:15px;
+  font-size:26px;
+  margin-bottom:10px;
 }
 
 p{
-  opacity:.85;
+  color:var(--soft);
   line-height:1.6;
   margin-bottom:25px;
 }
 
 .btn{
-  background:linear
+  background:var(--primary);
+  border:none;
+  padding:14px 22px;
+  border-radius:14px;
+  font-weight:600;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 10px 25px rgba(99,102,241,.5);
+}
+
+.btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 35px rgba(99,102,241,.8);
+}
+
+.figure{
+  margin-top:25px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  transition:.3s;
+}
+
+.figure:hover{
+  transform:scale(1.02);
+}
+
+.figure img{
+  width:100%;
+  display:block;
+}
+
+.caption{
+  margin-top:10px;
+  font-size:13px;
+  color:var(--soft);
+}
+
+/* Modal */
+.backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100;
+}
+
+.modal{
+  background:#0f172a;
+  width:100%;
+  max-width:1100px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 25px 70px rgba(0,0,0,.6);
+  animation:zoomIn .3s ease;
+  display:flex;
+  flex-direction:column;
+  max-height:95vh;
+}
+
+.modalHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.modalHeader strong{
+  font-size:14px;
+  letter-spacing:.5px;
+}
+
+.closeBtn{
+  background:#ef4444;
+  border:none;
+  color:white;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.modalBody{
+  padding:15px;
+  flex:1;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:15px;
+}
+
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  border-radius:14px;
+}
+
+pre{
+  background:#020617;
+  color:#e2e8f0;
+  border-radius:14px;
+  padding:15px;
+  overflow:auto;
+  font-size:13px;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .modalBody{
+    grid-template-columns:1fr;
+  }
+  iframe{
+    height:350px;
+  }
+}
+
+@media(max-width:600px){
+  .btn{
+    width:100%;
+  }
+}
+
+/* Animasi */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes zoomIn{
+  from{opacity:0; transform:scale(.9);}
+  to{opacity:1; transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>Program Fibonacci (Dart Console)</h1>
+    <p>
+      Berikut adalah hasil output program Dart untuk menghitung
+      <b>Fibonacci ke-20</b> dan mencetak teks <b>ULIYA GUMPARI</b>.
+      Klik tombol di bawah untuk melihat source code langsung di DartPad.
+    </p>
+
+    <button class="btn" onclick="openModal()">Lihat Source di DartPad</button>
+
+    <div class="figure">
+      <img src="output.png" alt="Output Program">
+    </div>
+
+    <div class="caption">
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="backdrop" id="modal">
+  <div class="modal">
+    <div class="modalHeader">
+      <strong>DartPad Source Code</strong>
+      <button class="closeBtn" onclick="closeModal()">Tutup</button>
+    </div>
+
+    <div class="modalBody">
+      <iframe 
+        src="https://dartpad.dev/embed-inline.html?id=ISI_GIST_ID_KAMU&run=true">
+      </iframe>
+
+      <pre><code>void main() {
+  const i = 20;
+
+  print('fibonacci($i) = ${fibonacci(i)}');
+  print('ULIYA GUMPARI');
+}
+
+int fibonacci(int n) {
+  return n &lt; 2 ? n : (fibonacci(n - 1) + fibonacci(n - 2));
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){
+  document.getElementById('modal').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+  document.body.style.overflow='auto';
+}
+</script>
+
+</body>
+</html>
