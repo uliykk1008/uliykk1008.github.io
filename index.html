@@ -25,7 +25,7 @@ body{
   background:radial-gradient(ellipse at bottom,#0b1026 0%,#000 100%);
 }
 
-/* Stars */
+/* ⭐ Stars */
 .stars{
   position:fixed;
   width:100%;
@@ -41,7 +41,7 @@ body{
   to{background-position:10000px 5000px}
 }
 
-/* Glow */
+/* 🌌 Glow */
 body::before,
 body::after{
   content:"";
@@ -75,7 +75,7 @@ body::after{
   position:relative;
   z-index:2;
   width:100%;
-  max-width:1000px;
+  max-width:900px;
   padding:30px;
 }
 
@@ -97,65 +97,11 @@ p{
   margin-bottom:25px;
 }
 
-.btn{
-  background:linear-gradient(45deg,var(--primary),var(--secondary));
-  border:none;
-  padding:14px 22px;
-  border-radius:14px;
-  font-weight:600;
-  color:white;
-  cursor:pointer;
-}
-
 iframe{
   width:100%;
   height:600px;
   border:none;
   border-radius:14px;
-}
-
-/* Modal */
-.backdrop{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:10;
-}
-
-.modal{
-  background:#0b1026;
-  width:100%;
-  max-width:1100px;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 25px 70px rgba(0,0,0,.8);
-  display:flex;
-  flex-direction:column;
-}
-
-.modalHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 20px;
-  border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-.closeBtn{
-  background:#ef4444;
-  border:none;
-  color:white;
-  padding:8px 12px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-.modalBody{
-  padding:15px;
 }
 </style>
 </head>
@@ -166,39 +112,16 @@ iframe{
 
 <div class="wrap">
   <div class="card">
-    <h1>🚀 Program Fibonacci </h1>
+    <h1>🚀 Program Fibonacci</h1>
     <p>
       Menghitung Fibonacci ke-20 dan menampilkan
       <b>ULIYA GUMPARI</b>.
     </p>
 
-    <button class="btn" onclick="openModal()">🌌 Lihat Program</button>
+    <iframe src="https://dartpad.dev/embed-inline.html?id=45a7cd856d57fd3a3eb40b5c337611aa&run=true"></iframe>
+
   </div>
 </div>
-
-<div class="backdrop" id="modal">
-  <div class="modal">
-    <div class="modalHeader">
-      <strong>DartPad - Fibonacci</strong>
-      <button class="closeBtn" onclick="closeModal()">Tutup</button>
-    </div>
-
-    <div class="modalBody">
-      <iframe src="https://dartpad.dev/embed-inline.html?id=45a7cd856d57fd3a3eb40b5c337611aa&run=true"></iframe>
-    </div>
-  </div>
-</div>
-
-<script>
-function openModal(){
-  document.getElementById('modal').style.display='flex';
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-  document.body.style.overflow='auto';
-}
-</script>
 
 </body>
 </html>
