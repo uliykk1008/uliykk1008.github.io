@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Program Fibonacci - Tema Galaksi</title>
+<title>Tugas DartPad - Fibonacci</title>
 
 <style>
 :root{
-  --primary:#8b5cf6;
-  --secondary:#22d3ee;
+  --primary:#7c3aed;
+  --secondary:#06b6d4;
   --text:#ffffff;
 }
 
@@ -21,62 +21,55 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
-  background:radial-gradient(ellipse at bottom,#0b1026 0%,#000 100%);
+  overflow-x:hidden;
+  background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#111827);
+  background-size:400% 400%;
+  animation:gradientMove 12s ease infinite;
 }
 
-/* ⭐ Stars */
-.stars{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:transparent url("https://www.transparenttextures.com/patterns/stardust.png");
-  animation:moveStars 60s linear infinite;
-  z-index:0;
-  opacity:.4;
+/* Background animation */
+@keyframes gradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
-@keyframes moveStars{
-  from{background-position:0 0}
-  to{background-position:10000px 5000px}
-}
-
-/* 🌌 Glow */
+/* Floating glow circles */
 body::before,
 body::after{
   content:"";
   position:absolute;
-  width:400px;
-  height:400px;
+  width:300px;
+  height:300px;
   border-radius:50%;
-  filter:blur(150px);
-  opacity:.6;
+  filter:blur(120px);
+  opacity:.5;
   animation:float 8s ease-in-out infinite alternate;
 }
 
 body::before{
   background:#7c3aed;
-  top:5%;
+  top:10%;
   left:10%;
 }
 
 body::after{
   background:#06b6d4;
-  bottom:5%;
+  bottom:10%;
   right:10%;
 }
 
 @keyframes float{
   from{transform:translateY(0)}
-  to{transform:translateY(-50px)}
+  to{transform:translateY(-40px)}
 }
 
 .wrap{
+  width:100%;
+  max-width:1000px;
+  padding:30px;
   position:relative;
   z-index:2;
-  width:100%;
-  max-width:900px;
-  padding:30px;
 }
 
 .card{
@@ -84,7 +77,13 @@ body::after{
   backdrop-filter:blur(20px);
   border-radius:25px;
   padding:35px;
-  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px)}
+  to{opacity:1; transform:translateY(0)}
 }
 
 h1{
@@ -94,34 +93,9 @@ h1{
 
 p{
   opacity:.85;
+  line-height:1.6;
   margin-bottom:25px;
 }
 
-iframe{
-  width:100%;
-  height:600px;
-  border:none;
-  border-radius:14px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="stars"></div>
-
-<div class="wrap">
-  <div class="card">
-    <h1>🚀 Program Fibonacci</h1>
-    <p>
-      Menghitung Fibonacci ke-20 dan menampilkan
-      <b>ULIYA GUMPARI</b>.
-    </p>
-
-    <iframe src="https://dartpad.dev/embed-inline.html?id=45a7cd856d57fd3a3eb40b5c337611aa&run=true"></iframe>
-
-  </div>
-</div>
-
-</body>
-</html>
+.btn{
+  background:linear
