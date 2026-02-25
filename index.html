@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tugas DartPad - Fibonacci</title>
+<title>Program Fibonacci - Tema Galaksi</title>
 
 <style>
 :root{
@@ -85,12 +85,6 @@ body::after{
   border-radius:25px;
   padding:35px;
   box-shadow:0 30px 80px rgba(0,0,0,.7);
-  animation:fadeUp .8s ease;
-}
-
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(30px)}
-  to{opacity:1; transform:translateY(0)}
 }
 
 h1{
@@ -100,7 +94,6 @@ h1{
 
 p{
   opacity:.85;
-  line-height:1.6;
   margin-bottom:25px;
 }
 
@@ -112,13 +105,13 @@ p{
   font-weight:600;
   color:white;
   cursor:pointer;
-  transition:.3s;
-  box-shadow:0 0 20px rgba(139,92,246,.6);
 }
 
-.btn:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 35px rgba(34,211,238,.9);
+iframe{
+  width:100%;
+  height:600px;
+  border:none;
+  border-radius:14px;
 }
 
 /* Modal */
@@ -140,15 +133,8 @@ p{
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 25px 70px rgba(0,0,0,.8);
-  animation:zoomIn .3s ease;
   display:flex;
   flex-direction:column;
-  max-height:95vh;
-}
-
-@keyframes zoomIn{
-  from{opacity:0; transform:scale(.9)}
-  to{opacity:1; transform:scale(1)}
 }
 
 .modalHeader{
@@ -170,14 +156,6 @@ p{
 
 .modalBody{
   padding:15px;
-  flex:1;
-}
-
-iframe{
-  width:100%;
-  height:600px;
-  border:none;
-  border-radius:14px;
 }
 </style>
 </head>
@@ -188,10 +166,10 @@ iframe{
 
 <div class="wrap">
   <div class="card">
-    <h1>🚀 Program Fibonacci</h1>
+    <h1>🚀 Program Fibonacci </h1>
     <p>
-      Menghitung Fibonacci ke-20 dan menampilkan nama <b>ULIYA GUMPARI</b>.
-      Klik tombol untuk melihat program berjalan.
+      Menghitung Fibonacci ke-20 dan menampilkan
+      <b>ULIYA GUMPARI</b>.
     </p>
 
     <button class="btn" onclick="openModal()">🌌 Lihat Program</button>
@@ -201,7 +179,7 @@ iframe{
 <div class="backdrop" id="modal">
   <div class="modal">
     <div class="modalHeader">
-      <strong>DartPad - Program Fibonacci</strong>
+      <strong>DartPad - Fibonacci</strong>
       <button class="closeBtn" onclick="closeModal()">Tutup</button>
     </div>
 
