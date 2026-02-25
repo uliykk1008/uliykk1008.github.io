@@ -3,103 +3,222 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tugas DartPad - Fibonacci</title>
+  <title>Tugas DartPad - Popup Source Code</title>
   <style>
-    :root { --max: 920px; }
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#f6f7fb;color:#111;}
-    .wrap{max-width:var(--max);margin:32px auto;padding:0 16px;}
-    .card{background:#fff;border:1px solid #e7e8ee;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:18px;}
-    h1{font-size:20px;margin:0 0 8px;}
-    p{margin:0 0 14px;line-height:1.5;color:#333;}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      border:0;border-radius:12px;padding:12px 14px;
-      background:#2563eb;color:#fff;font-weight:600;cursor:pointer;
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a2e;
+      --text:#e7eefc;
+      --muted:#a9b7d3;
+      --btn:#2f6bff;
+      --btn2:#1f335f;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
     }
-    .btn:active{transform:translateY(1px)}
-    .figure{margin-top:16px;border-radius:14px;overflow:hidden;border:1px solid #e7e8ee}
-    .figure img{display:block;width:100%;height:auto}
-    .caption{font-size:12px;color:#555;margin-top:10px}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 0%, #182a55 0%, transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, #2a1558 0%, transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .wrap{width:min(920px, 100%)}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+    .title{
+      margin:0 0 6px;
+      font-size:22px;
+      letter-spacing:.2px;
+    }
+    .desc{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:14.5px;
+    }
+    .row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:600;
+      color:white;
+      background: var(--btn);
+      transition: transform .08s ease, opacity .2s ease;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn.secondary{
+      background: var(--btn2);
+      color: var(--text);
+      border:1px solid var(--border);
+    }
+
+    .figure{
+      margin:0;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.25);
+    }
+    .figure img{
+      width:100%;
+      display:block;
+      height:auto;
+    }
+    .caption{
+      padding:10px 12px;
+      color:var(--muted);
+      font-size:13px;
+      border-top:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+    }
 
     /* Modal */
     .backdrop{
-      position:fixed;inset:0;background:rgba(0,0,0,.55);
-      display:none;align-items:center;justify-content:center;padding:18px;z-index:50;
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:50;
     }
+    .backdrop.open{display:flex;}
     .modal{
-      width:min(1100px, 100%);max-height:88vh;overflow:hidden;
-      background:#fff;border-radius:16px;border:1px solid #e7e8ee;
-      box-shadow:0 18px 60px rgba(0,0,0,.25);
-      display:flex;flex-direction:column;
+      width:min(1100px, 100%);
+      max-height:min(85vh, 820px);
+      display:flex;
+      flex-direction:column;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background: #0b1020;
+      box-shadow: var(--shadow);
     }
-    .modalHeader{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 16px;border-bottom:1px solid #ececf2;
+    .modal-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 14px;
+      background: rgba(255,255,255,.05);
+      border-bottom:1px solid var(--border);
       gap:12px;
     }
-    .modalHeader strong{font-size:14px}
-    .x{
-      border:1px solid #e7e8ee;background:#fff;border-radius:10px;
-      padding:8px 10px;cursor:pointer;font-weight:700;
+    .modal-header .left{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width:0;
     }
-    .modalBody{
-      display:grid;grid-template-columns:1.2fr .8fr;gap:12px;
-      padding:12px;height:78vh;min-height:520px;
+    .modal-title{
+      margin:0;
+      font-size:14.5px;
+      font-weight:700;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-    iframe{width:100%;height:100%;border:1px solid #e7e8ee;border-radius:12px}
-    pre{
-      margin:0;height:100%;overflow:auto;
-      background:#0b1020;color:#e5e7eb;border-radius:12px;
-      padding:14px;border:1px solid #1f2a44;
-      font-size:12.5px;line-height:1.5;
+    .modal-sub{
+      margin:0;
+      font-size:12.5px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
-    .hint{font-size:12px;color:#555;margin-left:auto}
-    @media (max-width: 900px){
-      .modalBody{grid-template-columns:1fr; height:auto; min-height:0}
-      iframe, pre{height:420px}
+    .icon-btn{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor:pointer;
+      padding:8px 10px;
+      border-radius:12px;
+      font-weight:700;
+    }
+    .iframe-wrap{
+      position:relative;
+      flex:1;
+      min-height:360px;
+      background:#0b1020;
+    }
+    iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
     }
   </style>
 </head>
 <body>
   <main class="wrap">
     <section class="card">
-      <h1>Program: Fibonacci (Dart Console)</h1>
-      <p>
-        Gambar di bawah adalah hasil output program Dart yang menghitung nilai <b>Fibonacci ke-20</b>
-        lalu mencetak teks <b>"ULIYA GUMPARI"</b>.
+      <h1 class="title">Output Program Dart (Fibonacci)</h1>
+
+      <!-- Deskripsi di atas tombol -->
+      <p class="desc">
+        Gambar di bawah adalah <b>capture output</b> dari program Dart yang menghitung nilai
+        <b>Fibonacci ke-20</b> menggunakan fungsi rekursif, lalu mencetak teks <b>“ULIYA GUMPARI”</b>.
       </p>
 
-      <button class="btn" id="openBtn" type="button">Lihat Source di DartPad</button>
-      <span class="hint">Popup akan menampilkan DartPad + source code</span>
+      <div class="row">
+        <button class="btn" id="openModalBtn">Lihat Source Code (DartPad)</button>
+        <button class="btn secondary" id="openDartpadNewTabBtn">Buka DartPad di Tab Baru</button>
+      </div>
 
+      <!-- Gambar output (capture) -->
       <figure class="figure">
-        <img src="output.png" alt="Capture output program Dart" />
+        <!-- Ganti src ke file gambar output kamu -->
+        <img src="output-capture.png" alt="Capture output program Dart" />
+        <figcaption class="caption">
+          Pastikan file gambar bernama <b>output-capture.png</b> ada di folder yang sama dengan <b>index.html</b>.
+        </figcaption>
       </figure>
-      <div class="caption">Pastikan file gambar bernama <b>output.png</b> berada 1 folder dengan <b>index.html</b>.</div>
     </section>
   </main>
 
-  <!-- Modal -->
+  <!-- Modal / Popup -->
   <div class="backdrop" id="backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modalHeader">
-        <strong id="modalTitle">DartPad (Source Code)</strong>
-        <button class="x" id="closeBtn" type="button" aria-label="Tutup">✕</button>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="DartPad Source Code">
+      <div class="modal-header">
+        <div class="left">
+          <p class="modal-title">Source Code di DartPad</p>
+          <p class="modal-sub">Klik di luar popup / tombol Close / tombol ESC untuk menutup.</p>
+        </div>
+        <button class="icon-btn" id="closeModalBtn">Close ✕</button>
       </div>
 
-      <div class="modalBody">
-        <!-- DartPad Embed -->
-        <iframe
-          id="dartpadFrame"
-          title="DartPad Embed"
-          src="https://dartpad.dev/embed-inline.html?id=PASTE_GIST_ID_DI_SINI&split=70&run=true"
-          loading="lazy"
-        ></iframe>
+      <div class="iframe-wrap">
+        <iframe id="dartpadFrame" title="DartPad Embed"></iframe>
+      </div>
+    </div>
+  </div>
 
-        <!-- Source code (backup/terlihat jelas di popup) -->
-        <pre><code>// main.dart
-void main() {
+  <script>
+    // === 1) Source code Dart yang akan dikirim ke DartPad ===
+    const dartCode = `void main() {
   const i = 20;
 
   print('fibonacci($i) = ${fibonacci(i)}');
@@ -108,41 +227,53 @@ void main() {
 
 /// Computes the nth Fibonacci number.
 int fibonacci(int n) {
-  // Perbaikan: harus n-2 (bukan -2)
-  return n &lt; 2 ? n : (fibonacci(n - 1) + fibonacci(n - 2));
+  return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
 }
-</code></pre>
-      </div>
-    </div>
-  </div>
+`;
 
-  <script>
-    const openBtn = document.getElementById('openBtn');
-    const closeBtn = document.getElementById('closeBtn');
+    // === 2) Buat URL embed DartPad dengan kode di atas ===
+    // DartPad embed support "code=" (URL encoded)
+    const embedUrl = (code) => {
+      const encoded = encodeURIComponent(code);
+      // theme=dark biar mirip tampilan di gambar kamu
+      return `https://dartpad.dev/embed-dart.html?theme=dark&run=true&code=${encoded}`;
+    };
+
     const backdrop = document.getElementById('backdrop');
+    const frame = document.getElementById('dartpadFrame');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const openNewTabBtn = document.getElementById('openDartpadNewTabBtn');
 
     function openModal(){
-      backdrop.style.display = 'flex';
+      frame.src = embedUrl(dartCode);
+      backdrop.classList.add('open');
       backdrop.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
     }
+
     function closeModal(){
-      backdrop.style.display = 'none';
+      backdrop.classList.remove('open');
       backdrop.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      // optional: stop running iframe
+      frame.src = 'about:blank';
     }
 
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
 
-    // klik area gelap untuk tutup
+    // klik area gelap luar = tutup
     backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) closeModal();
+      if(e.target === backdrop) closeModal();
     });
 
-    // ESC untuk tutup
+    // ESC = tutup
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
+      if(e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
+    });
+
+    // Tab baru (kalau embed-nya berat di HP)
+    openNewTabBtn.addEventListener('click', () => {
+      window.open(embedUrl(dartCode), '_blank', 'noopener,noreferrer');
     });
   </script>
 </body>
