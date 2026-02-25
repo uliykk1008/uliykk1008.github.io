@@ -25,7 +25,7 @@ body{
   background:radial-gradient(ellipse at bottom,#0b1026 0%,#000 100%);
 }
 
-/* ⭐ Stars */
+/* Stars */
 .stars{
   position:fixed;
   width:100%;
@@ -41,7 +41,7 @@ body{
   to{background-position:10000px 5000px}
 }
 
-/* 🌌 Glow Nebula */
+/* Glow */
 body::before,
 body::after{
   content:"";
@@ -121,29 +121,6 @@ p{
   box-shadow:0 0 35px rgba(34,211,238,.9);
 }
 
-.figure{
-  margin-top:25px;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.2);
-  transition:.3s;
-}
-
-.figure:hover{
-  transform:scale(1.02);
-}
-
-.figure img{
-  width:100%;
-  display:block;
-}
-
-.caption{
-  margin-top:10px;
-  font-size:13px;
-  opacity:.7;
-}
-
 /* Modal */
 .backdrop{
   position:fixed;
@@ -194,35 +171,13 @@ p{
 .modalBody{
   padding:15px;
   flex:1;
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:15px;
 }
 
 iframe{
   width:100%;
-  height:100%;
+  height:600px;
   border:none;
   border-radius:14px;
-}
-
-pre{
-  background:#020617;
-  color:#e2e8f0;
-  border-radius:14px;
-  padding:15px;
-  overflow:auto;
-  font-size:13px;
-}
-
-/* Responsive */
-@media(max-width:900px){
-  .modalBody{
-    grid-template-columns:1fr;
-  }
-  iframe{
-    height:350px;
-  }
 }
 </style>
 </head>
@@ -233,43 +188,25 @@ pre{
 
 <div class="wrap">
   <div class="card">
-    <h1>🚀 Program Fibonacci </h1>
+    <h1>🚀 Program Fibonacci</h1>
     <p>
-      Output program Dart untuk menghitung <b>Fibonacci ke-20</b>
-      dan menampilkan teks <b>ULIYA GUMPARI</b>.
-      Klik tombol untuk melihat source code di DartPad.
+      Menghitung Fibonacci ke-20 dan menampilkan nama <b>ULIYA GUMPARI</b>.
+      Klik tombol untuk melihat program berjalan.
     </p>
 
-    <button class="btn" onclick="openModal()">🌌 Lihat Source di DartPad</button>
-
-    <div class="figure">
-      <img src="output.png" alt="Output Program">
-    </div>
-
-    <div class="caption">
-    </div>
+    <button class="btn" onclick="openModal()">🌌 Lihat Program</button>
   </div>
 </div>
 
 <div class="backdrop" id="modal">
   <div class="modal">
     <div class="modalHeader">
-      <strong>DartPad Source Code</strong>
+      <strong>DartPad - Program Fibonacci</strong>
       <button class="closeBtn" onclick="closeModal()">Tutup</button>
     </div>
 
     <div class="modalBody">
-      <iframe src="https://dartpad.dev/embed-inline.html?id=ISI_GIST_ID_KAMU&run=true"></iframe>
-
-      <pre><code>void main() {
-  const i = 20;
-  print('fibonacci($i) = ${fibonacci(i)}');
-  print('ULIYA GUMPARI');
-}
-
-int fibonacci(int n) {
-  return n &lt; 2 ? n : (fibonacci(n - 1) + fibonacci(n - 2));
-}</code></pre>
+      <iframe src="https://dartpad.dev/embed-inline.html?id=45a7cd856d57fd3a3eb40b5c337611aa&run=true"></iframe>
     </div>
   </div>
 </div>
