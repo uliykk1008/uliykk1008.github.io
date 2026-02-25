@@ -1,40 +1,149 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="id">
 <head>
-    <title>Latihan Coding Dart</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        a {
-            color: purple;
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tugas DartPad - Fibonacci</title>
+  <style>
+    :root { --max: 920px; }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#f6f7fb;color:#111;}
+    .wrap{max-width:var(--max);margin:32px auto;padding:0 16px;}
+    .card{background:#fff;border:1px solid #e7e8ee;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:18px;}
+    h1{font-size:20px;margin:0 0 8px;}
+    p{margin:0 0 14px;line-height:1.5;color:#333;}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      border:0;border-radius:12px;padding:12px 14px;
+      background:#2563eb;color:#fff;font-weight:600;cursor:pointer;
+    }
+    .btn:active{transform:translateY(1px)}
+    .figure{margin-top:16px;border-radius:14px;overflow:hidden;border:1px solid #e7e8ee}
+    .figure img{display:block;width:100%;height:auto}
+    .caption{font-size:12px;color:#555;margin-top:10px}
+
+    /* Modal */
+    .backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.55);
+      display:none;align-items:center;justify-content:center;padding:18px;z-index:50;
+    }
+    .modal{
+      width:min(1100px, 100%);max-height:88vh;overflow:hidden;
+      background:#fff;border-radius:16px;border:1px solid #e7e8ee;
+      box-shadow:0 18px 60px rgba(0,0,0,.25);
+      display:flex;flex-direction:column;
+    }
+    .modalHeader{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 16px;border-bottom:1px solid #ececf2;
+      gap:12px;
+    }
+    .modalHeader strong{font-size:14px}
+    .x{
+      border:1px solid #e7e8ee;background:#fff;border-radius:10px;
+      padding:8px 10px;cursor:pointer;font-weight:700;
+    }
+    .modalBody{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:12px;
+      padding:12px;height:78vh;min-height:520px;
+    }
+    iframe{width:100%;height:100%;border:1px solid #e7e8ee;border-radius:12px}
+    pre{
+      margin:0;height:100%;overflow:auto;
+      background:#0b1020;color:#e5e7eb;border-radius:12px;
+      padding:14px;border:1px solid #1f2a44;
+      font-size:12.5px;line-height:1.5;
+    }
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+    .hint{font-size:12px;color:#555;margin-left:auto}
+    @media (max-width: 900px){
+      .modalBody{grid-template-columns:1fr; height:auto; min-height:0}
+      iframe, pre{height:420px}
+    }
+  </style>
 </head>
 <body>
+  <main class="wrap">
+    <section class="card">
+      <h1>Program: Fibonacci (Dart Console)</h1>
+      <p>
+        Gambar di bawah adalah hasil output program Dart yang menghitung nilai <b>Fibonacci ke-20</b>
+        lalu mencetak teks <b>"ULIYA GUMPARI"</b>.
+      </p>
 
-    <p>
-        ini coding latihan 1 
-        <a href="https://gist.github.com/uliykk1008/45a7cd856d57fd3a3eb40b5c337611aa" target="_blank">
-            source code
-        </a>
-    </p>
+      <button class="btn" id="openBtn" type="button">Lihat Source di DartPad</button>
+      <span class="hint">Popup akan menampilkan DartPad + source code</span>
 
-    <p>
-        ini di dartpad 
-        <a href="https://dartpad.dev/45a7cd856d57fd3a3eb40b5c337611aa" target="_blank">
-            source code
-        </a>
-    </p>
+      <figure class="figure">
+        <img src="output.png" alt="Capture output program Dart" />
+      </figure>
+      <div class="caption">Pastikan file gambar bernama <b>output.png</b> berada 1 folder dengan <b>index.html</b>.</div>
+    </section>
+  </main>
 
-    <iframe 
-        src="https://dartpad.dev/embed-dart.html?id=45a7cd856d57fd3a3eb40b5c337611aa"
-        width="100%" 
-        height="600"
-        style="border:1px solid #ccc;">
-    </iframe>
+  <!-- Modal -->
+  <div class="backdrop" id="backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modalHeader">
+        <strong id="modalTitle">DartPad (Source Code)</strong>
+        <button class="x" id="closeBtn" type="button" aria-label="Tutup">✕</button>
+      </div>
 
+      <div class="modalBody">
+        <!-- DartPad Embed -->
+        <iframe
+          id="dartpadFrame"
+          title="DartPad Embed"
+          src="https://dartpad.dev/embed-inline.html?id=PASTE_GIST_ID_DI_SINI&split=70&run=true"
+          loading="lazy"
+        ></iframe>
+
+        <!-- Source code (backup/terlihat jelas di popup) -->
+        <pre><code>// main.dart
+void main() {
+  const i = 20;
+
+  print('fibonacci($i) = ${fibonacci(i)}');
+  print('ULIYA GUMPARI');
+}
+
+/// Computes the nth Fibonacci number.
+int fibonacci(int n) {
+  // Perbaikan: harus n-2 (bukan -2)
+  return n &lt; 2 ? n : (fibonacci(n - 1) + fibonacci(n - 2));
+}
+</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById('openBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const backdrop = document.getElementById('backdrop');
+
+    function openModal(){
+      backdrop.style.display = 'flex';
+      backdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      backdrop.style.display = 'none';
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    // klik area gelap untuk tutup
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+
+    // ESC untuk tutup
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
+    });
+  </script>
 </body>
 </html>
