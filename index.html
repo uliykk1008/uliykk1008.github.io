@@ -1,254 +1,247 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tugas DartPad - Fibonacci</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOP Report - Uliya Gumpari</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --primary:#6366f1;
-  --bg1:#0f172a;
-  --bg2:#1e293b;
-  --card:rgba(30,41,59,.85);
-  --text:#f1f5f9;
-  --soft:#94a3b8;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
-
-*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
-  color:var(--text);
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
+  font-family:'Poppins',sans-serif;
+  color:white;
+  overflow-x:hidden;
+  background:black;
 }
 
-.wrap{
-  width:100%;
-  max-width:1000px;
-  padding:40px 20px;
+/* Animated Galaxy Background */
+body::before{
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle at 20% 30%,#001d3d,transparent 40%),
+             radial-gradient(circle at 80% 70%,#3a0ca3,transparent 40%),
+             radial-gradient(circle at 50% 50%,#000814,transparent 60%);
+  animation:moveGalaxy 40s linear infinite;
+  z-index:-2;
 }
 
-.card{
-  background:var(--card);
-  backdrop-filter:blur(12px);
-  border-radius:22px;
-  padding:30px;
-  box-shadow:0 25px 60px rgba(0,0,0,.5);
-  animation:fadeIn .6s ease;
+@keyframes moveGalaxy{
+  from{transform:translate(0,0);}
+  to{transform:translate(-25%, -25%);}
 }
 
-h1{
-  font-size:26px;
-  margin-bottom:10px;
+/* Glass Section */
+section{
+  width:85%;
+  margin:80px auto;
+  padding:50px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(255,215,0,0.1);
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+header{
+  text-align:center;
+  padding:120px 20px 60px;
+}
+
+header h1{
+  font-size:40px;
+  letter-spacing:3px;
+  color:#ffd60a;
+  margin-bottom:20px;
+}
+
+h2{
+  color:#ffd60a;
+  margin-bottom:15px;
 }
 
 p{
-  color:var(--soft);
-  line-height:1.6;
-  margin-bottom:25px;
+  font-weight:300;
+  line-height:1.8;
 }
 
-.btn{
-  background:var(--primary);
+button{
+  margin-top:20px;
+  padding:12px 30px;
   border:none;
-  padding:14px 22px;
-  border-radius:14px;
+  border-radius:30px;
+  background:#ffd60a;
   font-weight:600;
-  color:white;
   cursor:pointer;
-  transition:.3s;
-  box-shadow:0 10px 25px rgba(99,102,241,.5);
+  transition:0.3s;
 }
 
-.btn:hover{
-  transform:translateY(-4px);
-  box-shadow:0 15px 35px rgba(99,102,241,.8);
+button:hover{
+  background:white;
+  box-shadow:0 0 25px #ffd60a;
 }
 
-.figure{
-  margin-top:25px;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.1);
-  transition:.3s;
-}
+a{text-decoration:none;}
 
-.figure:hover{
-  transform:scale(1.02);
-}
-
-.figure img{
-  width:100%;
-  display:block;
-}
-
-.caption{
-  margin-top:10px;
-  font-size:13px;
-  color:var(--soft);
-}
-
-/* Modal */
-.backdrop{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:100;
-}
-
-.modal{
-  background:#0f172a;
-  width:100%;
-  max-width:1100px;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 25px 70px rgba(0,0,0,.6);
-  animation:zoomIn .3s ease;
-  display:flex;
-  flex-direction:column;
-  max-height:95vh;
-}
-
-.modalHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 20px;
-  border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-.modalHeader strong{
-  font-size:14px;
-  letter-spacing:.5px;
-}
-
-.closeBtn{
-  background:#ef4444;
-  border:none;
-  color:white;
-  padding:8px 12px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-.modalBody{
-  padding:15px;
-  flex:1;
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:15px;
-}
-
-iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  border-radius:14px;
-}
-
-pre{
-  background:#020617;
-  color:#e2e8f0;
-  border-radius:14px;
-  padding:15px;
-  overflow:auto;
-  font-size:13px;
-}
-
-/* Responsive */
-@media(max-width:900px){
-  .modalBody{
-    grid-template-columns:1fr;
-  }
-  iframe{
-    height:350px;
-  }
-}
-
-@media(max-width:600px){
-  .btn{
-    width:100%;
-  }
-}
-
-/* Animasi */
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes zoomIn{
-  from{opacity:0; transform:scale(.9);}
-  to{opacity:1; transform:scale(1);}
+footer{
+  text-align:center;
+  padding:60px;
+  color:#aaa;
 }
 </style>
 </head>
 
 <body>
-<div class="wrap">
-  <div class="card">
-    <h1>Program Fibonacci</h1>
-    <p>
-      Berikut adalah hasil output program Dart untuk menghitung
-      <b>Fibonacci ke-20</b> dan mencetak teks <b>ULIYA GUMPARI</b>.
-      Klik tombol di bawah untuk melihat source code langsung di DartPad.
-    </p>
 
-    <button class="btn" onclick="openModal()">Lihat Source di DartPad</button>
+<header>
+<h1>OBJECT ORIENTED PROGRAMMING</h1>
+<p>Uliya Gumpari | 251410008 | IPK 3,87</p>
+</header>
 
-    <div class="figure">
-      <img src="output.png" alt="Output Program">
-    </div>
+<section>
+<h2>1. Pengertian OOP</h2>
+<p>
+Object Oriented Programming adalah paradigma pemrograman
+yang berorientasi pada objek. OOP membantu membangun
+program yang terstruktur, modular, dan mudah dikembangkan.
+</p>
+</section>
 
-    <div class="caption">
-    </div>
-  </div>
-</div>
+<section>
+<h2>2. Konsep Dasar OOP</h2>
+<p>
+Konsep utama OOP meliputi Class, Object, Encapsulation,
+Inheritance, dan Polymorphism. Konsep ini membuat sistem
+lebih fleksibel dan reusable.
+</p>
+</section>
 
-<!-- Modal -->
-<div class="backdrop" id="modal">
-  <div class="modal">
-    <div class="modalHeader">
-      <strong>DartPad Source Code</strong>
-      <button class="closeBtn" onclick="closeModal()">Tutup</button>
-    </div>
+<section>
+<h2>3. Class Sederhana (Car)</h2>
+<p>
+Class merupakan blueprint untuk membuat objek.
+Contoh class Car dengan atribut dan method.
+</p>
+<a href="https://gist.github.com/uliykk1008/26742bdfe9ccde1c2400d9d5e3c40eff" target="_blank">
+<button>Run Source Code</button>
+</a>
+</section>
 
-    <div class="modalBody">
-      <iframe 
-        src="https://dartpad.dev/embed-inline.html?id=45a7cd856d57fd3a3eb40b5c337611aa&run=true">
-      </iframe>
+<section>
+<h2>4. Object Instantiation</h2>
+<p>
+Object dibuat dari class menggunakan constructor.
+Proses ini disebut instantiation.
+</p>
+<a href="https://gist.github.com/uliykk1008/82c181bd4ca39d448c0f07e21ac95284" target="_blank">
+<button>Run Source Code</button>
+</a>
+</section>
 
-      <pre><code>void main() {
-  const i = 20;
+<section>
+<h2>5. Constructor</h2>
+<p>
+Constructor digunakan untuk menginisialisasi
+nilai awal suatu objek ketika dibuat.
+</p>
+<a href="https://gist.github.com/uliykk1008/80005406bce540c3c8f297767a56bc78" target="_blank">
+<button>Run Source Code</button>
+</a>
+</section>
 
-  print('fibonacci($i) = ${fibonacci(i)}');
-  print('ULIYA GUMPARI');
-}
+<section>
+<h2>6. Practice Class Mahasiswa</h2>
+<p>
+Implementasi class Mahasiswa dengan atribut
+dan method untuk menampilkan data mahasiswa.
+</p>
+<a href="https://gist.github.com/uliykk1008/439107faeb99c8eacd21c700a221ac26" target="_blank">
+<button>Run Source Code</button>
+</a>
+</section>
 
-int fibonacci(int n) {
-  return n &lt; 2 ? n : (fibonacci(n - 1) + fibonacci(n - 2));
-}</code></pre>
-    </div>
-  </div>
-</div>
+<section>
+<h2>7. Encapsulation</h2>
+<p>
+Encapsulation menyembunyikan data dengan membuat
+atribut private dan mengaksesnya melalui getter/setter.
+</p>
+<a href="https://gist.github.com/uliykk1008/6eae1d6adfb21db2802fdb1cff6b8145" target="_blank">
+<button>Run Source Code</button>
+</a>
+</section>
+
+<section>
+<h2>8. This Keyword</h2>
+<p>
+Keyword <b>this</b> digunakan untuk merujuk
+pada atribut milik class agar tidak terjadi
+kesalahan referensi variabel.
+</p>
+<a href="https://gist.github.com/uliykk1008/a59becbbf41a03e8e27904b0a24e343d" target="_blank">
+<button>Run Source Code</button>
+</a>
+</section>
+
+<section>
+<h2>9. Product Class</h2>
+<p>
+Contoh penggunaan final dan named parameter
+untuk membuat class lebih aman dan fleksibel.
+</p>
+<a href="https://gist.github.com/uliykk1008/9733f144ec599e694748f6e39ccbbb21" target="_blank">
+<button>Run Source Code</button>
+</a>
+</section>
+
+<section>
+<h2>10. Kesimpulan</h2>
+<p>
+OOP mempermudah pengembangan perangkat lunak
+dengan struktur yang jelas melalui penggunaan
+class dan object. Konsep encapsulation,
+constructor, dan this keyword meningkatkan
+keamanan serta keteraturan kode.
+</p>
+</section>
+
+<section>
+<h2>11. Quiz Bonus</h2>
+<p>
+Buatlah class Buku dengan atribut judul dan penulis
+serta method tampilkan().
+</p>
+</section>
+
+<footer>
+© 2025 - Uliya Gumpari ✨ Premium Cinematic Edition
+</footer>
 
 <script>
-function openModal(){
-  document.getElementById('modal').style.display='flex';
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-  document.body.style.overflow='auto';
-}
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
 </script>
 
 </body>
