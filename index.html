@@ -8,39 +8,51 @@
 <style>
 body{
     margin:0;
-    padding:0;
     font-family: Arial, Helvetica, sans-serif;
-    color:white;
     text-align:center;
-    background: url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564") no-repeat center center/cover;
-    height:100vh;
+    color:white;
+    background:url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564") no-repeat center center/cover;
 }
 
+/* container */
 .container{
-    background: rgba(0,0,0,0.6);
-    width:80%;
+    padding:40px;
+}
+
+/* card profil */
+.card{
+    background:rgba(0,0,0,0.7);
+    width:300px;
     margin:auto;
-    margin-top:100px;
-    padding:30px;
+    padding:20px;
     border-radius:15px;
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
-h1{
+.card img{
+    width:150px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+/* tulisan glow */
+.glow{
+    font-size:28px;
+    font-weight:bold;
     color:#7df9ff;
+    text-shadow:
+        0 0 5px #7df9ff,
+        0 0 10px #7df9ff,
+        0 0 20px #00eaff,
+        0 0 40px #00eaff;
 }
 
-p{
-    line-height:1.6;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 20px;
-    background:#7df9ff;
-    color:black;
-    text-decoration:none;
-    border-radius:8px;
+iframe{
+    margin-top:40px;
+    width:90%;
+    height:600px;
+    border:none;
+    border-radius:10px;
 }
 </style>
 </head>
@@ -48,20 +60,19 @@ p{
 <body>
 
 <div class="container">
-    <h1>Uliya Gumpari</h1>
-    <h3>Mahasiswa Sistem Informasi</h3>
 
-    <p>
-      gambar di b
-    </p>
+<div class="card">
+<img src="output.png" alt="Foto Profil">
 
-    <p>
-        Saya tertarik mempelajari HTML, CSS, dan pemrograman 
-        berbasis objek. Semoga ke depannya bisa membuat 
-        website yang lebih menarik dan bermanfaat.
-    </p>
+<h2 class="glow">Uliya Gumpari</h2>
+<p>NIM : 251410008</p>
+<p>Program Studi : Sistem Informasi</p>
+<p>Kelas : SI2A</p>
 
-    <a href="#" class="output.png">Lihat Proyek</a>
+</div>
+
+<iframe src="https://dartpad.dev/?id=59e5398387c8a670c5262aae30750359"></iframe>
+
 </div>
 
 </body>
