@@ -3,57 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profil Uliya</title>
+<title>Uliya Gumpari</title>
 
 <style>
+
 body{
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
     text-align:center;
     color:white;
-    background:url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564") no-repeat center center/cover;
+    min-height:100vh;
+
+    /* galaksi ungu */
+    background: radial-gradient(circle at top, #5a00a3, #1a0033, #060010);
 }
 
 /* container */
 .container{
-    padding:40px;
+    padding-top:100px;
 }
 
-/* card profil */
-.card{
-    background:rgba(0,0,0,0.7);
-    width:300px;
-    margin:auto;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 0 20px rgba(255,255,255,0.2);
-}
-
-.card img{
-    width:150px;
-    border-radius:10px;
-    margin-bottom:15px;
-}
-
-/* tulisan glow */
+/* glow nama */
 .glow{
-    font-size:28px;
-    font-weight:bold;
-    color:#7df9ff;
+    font-size:38px;
+    color:#e6ccff;
     text-shadow:
-        0 0 5px #7df9ff,
-        0 0 10px #7df9ff,
-        0 0 20px #00eaff,
-        0 0 40px #00eaff;
+    0 0 5px #e6ccff,
+    0 0 10px #cc99ff,
+    0 0 20px #b366ff,
+    0 0 40px #8a2be2;
 }
 
-iframe{
-    margin-top:40px;
-    width:90%;
-    height:600px;
-    border:none;
+/* tombol */
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 28px;
+    background:#8a2be2;
+    color:white;
+    text-decoration:none;
     border-radius:10px;
+    font-size:16px;
+    box-shadow:0 0 12px #b366ff;
 }
+
+.btn:hover{
+    background:#a64dff;
+}
+
+/* gambar output */
+.output-img{
+    margin-top:60px;
+    width:240px;
+    border-radius:10px;
+    box-shadow:0 0 15px #b366ff;
+}
+
 </style>
 </head>
 
@@ -61,17 +66,21 @@ iframe{
 
 <div class="container">
 
-<div class="card">
-<img src="output.png" alt="Foto Profil">
+<h1 class="glow">Uliya Gumpari</h1>
 
-<h2 class="glow">Uliya Gumpari</h2>
 <p>NIM : 251410008</p>
 <p>Program Studi : Sistem Informasi</p>
 <p>Kelas : SI2A</p>
 
-</div>
+<a class="btn" 
+href="https://dartpad.dev/?id=59e5398387c8a670c5262aae30750359" 
+target="_blank">
+Buka Program Dart
+</a>
 
-<iframe src="https://dartpad.dev/?id=59e5398387c8a670c5262aae30750359"></iframe>
+<br>
+
+<img src="output.png" class="output-img" alt="Output Program">
 
 </div>
 
