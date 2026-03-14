@@ -3,246 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OOP Report - Uliya Gumpari</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Profil Uliya</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body{
-  font-family:'Poppins',sans-serif;
-  color:white;
-  overflow-x:hidden;
-  background:black;
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    text-align:center;
+    background: url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564") no-repeat center center/cover;
+    height:100vh;
 }
 
-/* Animated Galaxy Background */
-body::before{
-  content:"";
-  position:fixed;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle at 20% 30%,#001d3d,transparent 40%),
-             radial-gradient(circle at 80% 70%,#3a0ca3,transparent 40%),
-             radial-gradient(circle at 50% 50%,#000814,transparent 60%);
-  animation:moveGalaxy 40s linear infinite;
-  z-index:-2;
+.container{
+    background: rgba(0,0,0,0.6);
+    width:80%;
+    margin:auto;
+    margin-top:100px;
+    padding:30px;
+    border-radius:15px;
 }
 
-@keyframes moveGalaxy{
-  from{transform:translate(0,0);}
-  to{transform:translate(-25%, -25%);}
-}
-
-/* Glass Section */
-section{
-  width:85%;
-  margin:80px auto;
-  padding:50px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  border-radius:25px;
-  box-shadow:0 0 40px rgba(255,215,0,0.1);
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-
-section.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-header{
-  text-align:center;
-  padding:120px 20px 60px;
-}
-
-header h1{
-  font-size:40px;
-  letter-spacing:3px;
-  color:#ffd60a;
-  margin-bottom:20px;
-}
-
-h2{
-  color:#ffd60a;
-  margin-bottom:15px;
+h1{
+    color:#7df9ff;
 }
 
 p{
-  font-weight:300;
-  line-height:1.8;
+    line-height:1.6;
 }
 
-button{
-  margin-top:20px;
-  padding:12px 30px;
-  border:none;
-  border-radius:30px;
-  background:#ffd60a;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-button:hover{
-  background:white;
-  box-shadow:0 0 25px #ffd60a;
-}
-
-a{text-decoration:none;}
-
-footer{
-  text-align:center;
-  padding:60px;
-  color:#aaa;
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 20px;
+    background:#7df9ff;
+    color:black;
+    text-decoration:none;
+    border-radius:8px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>OBJECT ORIENTED PROGRAMMING</h1>
-<p>Uliya Gumpari | 251410008 | IPK 3,87</p>
-</header>
+<div class="container">
+    <h1>Uliya Gumpari</h1>
+    <h3>Mahasiswa Sistem Informasi</h3>
 
-<section>
-<h2>1. Pengertian OOP</h2>
-<p>
-Object Oriented Programming adalah paradigma pemrograman
-yang berorientasi pada objek. OOP membantu membangun
-program yang terstruktur, modular, dan mudah dikembangkan.
-</p>
-</section>
+    <p>
+        Halo! Saya Uliya, mahasiswa yang sedang belajar tentang 
+        pemrograman, teknologi, dan pengembangan web. 
+        Website ini dibuat sebagai latihan membuat halaman profil 
+        sederhana dengan tema galaksi.
+    </p>
 
-<section>
-<h2>2. Konsep Dasar OOP</h2>
-<p>
-Konsep utama OOP meliputi Class, Object, Encapsulation,
-Inheritance, dan Polymorphism. Konsep ini membuat sistem
-lebih fleksibel dan reusable.
-</p>
-</section>
+    <p>
+        Saya tertarik mempelajari HTML, CSS, dan pemrograman 
+        berbasis objek. Semoga ke depannya bisa membuat 
+        website yang lebih menarik dan bermanfaat.
+    </p>
 
-<section>
-<h2>3. Class Sederhana (Car)</h2>
-<p>
-Class merupakan blueprint untuk membuat objek.
-Contoh class Car dengan atribut dan method.
-</p>
-<a href="https://gist.github.com/uliykk1008/26742bdfe9ccde1c2400d9d5e3c40eff" target="_blank">
-<button>Run Source Code</button>
-</a>
-</section>
-
-<section>
-<h2>4. Object Instantiation</h2>
-<p>
-Object dibuat dari class menggunakan constructor.
-Proses ini disebut instantiation.
-</p>
-<a href="https://gist.github.com/uliykk1008/82c181bd4ca39d448c0f07e21ac95284" target="_blank">
-<button>Run Source Code</button>
-</a>
-</section>
-
-<section>
-<h2>5. Constructor</h2>
-<p>
-Constructor digunakan untuk menginisialisasi
-nilai awal suatu objek ketika dibuat.
-</p>
-<a href="https://gist.github.com/uliykk1008/80005406bce540c3c8f297767a56bc78" target="_blank">
-<button>Run Source Code</button>
-</a>
-</section>
-
-<section>
-<h2>6. Practice Class Mahasiswa</h2>
-<p>
-Implementasi class Mahasiswa dengan atribut
-dan method untuk menampilkan data mahasiswa.
-</p>
-<a href="https://gist.github.com/uliykk1008/439107faeb99c8eacd21c700a221ac26" target="_blank">
-<button>Run Source Code</button>
-</a>
-</section>
-
-<section>
-<h2>7. Encapsulation</h2>
-<p>
-Encapsulation menyembunyikan data dengan membuat
-atribut private dan mengaksesnya melalui getter/setter.
-</p>
-<a href="https://gist.github.com/uliykk1008/6eae1d6adfb21db2802fdb1cff6b8145" target="_blank">
-<button>Run Source Code</button>
-</a>
-</section>
-
-<section>
-<h2>8. This Keyword</h2>
-<p>
-Keyword <b>this</b> digunakan untuk merujuk
-pada atribut milik class agar tidak terjadi
-kesalahan referensi variabel.
-</p>
-<a href="https://gist.github.com/uliykk1008/a59becbbf41a03e8e27904b0a24e343d" target="_blank">
-<button>Run Source Code</button>
-</a>
-</section>
-
-<section>
-<h2>9. Product Class</h2>
-<p>
-Contoh penggunaan final dan named parameter
-untuk membuat class lebih aman dan fleksibel.
-</p>
-<a href="https://gist.github.com/uliykk1008/9733f144ec599e694748f6e39ccbbb21" target="_blank">
-<button>Run Source Code</button>
-</a>
-</section>
-
-<section>
-<h2>10. Kesimpulan</h2>
-<p>
-OOP mempermudah pengembangan perangkat lunak
-dengan struktur yang jelas melalui penggunaan
-class dan object. Konsep encapsulation,
-constructor, dan this keyword meningkatkan
-keamanan serta keteraturan kode.
-</p>
-</section>
-
-<section>
-<h2>11. Quiz Bonus</h2>
-<p>
-Buatlah class Buku dengan atribut judul dan penulis
-serta method tampilkan().
-</p>
-</section>
-
-<footer>
-© 2025 - Uliya Gumpari ✨ Premium Cinematic Edition
-</footer>
-
-<script>
-const sections=document.querySelectorAll("section");
-window.addEventListener("scroll",()=>{
-  sections.forEach(sec=>{
-    const top=sec.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
-      sec.classList.add("show");
-    }
-  });
-});
-</script>
+    <a href="#" class="btn">Lihat Proyek</a>
+</div>
 
 </body>
 </html>
